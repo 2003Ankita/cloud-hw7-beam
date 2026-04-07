@@ -10,9 +10,7 @@ def run():
     with beam.Pipeline(runner="DirectRunner", options=options) as p:
         (
             p
-            | "Read from GCS" >> beam.io.ReadFromText(
-                f"gs://{BUCKET_NAME}/{PREFIX}"
-            )
+            | "Read Local" >> beam.io.ReadFromText("sample_data/*.html")
             | "Sample" >> beam.combiners.Sample.FixedSizeGlobally(5)
             | "Flatten" >> beam.FlatMap(lambda x: x)
             | "Print" >> beam.Map(print)
