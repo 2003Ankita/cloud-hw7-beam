@@ -5,13 +5,9 @@ BUCKET_NAME = "pagerank-bu-ap178152"
 PREFIX = "webgraph_v2/*"
 
 def run():
-    options = PipelineOptions([
-        "--runner=DirectRunner",
-        "--environment_type=LOOPBACK",
-        "--direct_num_workers=1"
-    ])
+    options = PipelineOptions()
 
-    with beam.Pipeline(options=options) as p:
+    with beam.Pipeline(runner="DirectRunner", options=options) as p:
         (
             p
             | "Read from GCS" >> beam.io.ReadFromText(
