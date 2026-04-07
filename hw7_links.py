@@ -6,9 +6,10 @@ PREFIX = "webgraph_v2/*"
 
 def run():
     options = PipelineOptions([
-    "--runner=DirectRunner",
-    "--direct_num_workers=1"
-])
+        "--runner=DirectRunner",
+        "--environment_type=LOOPBACK",
+        "--direct_num_workers=1"
+    ])
 
     with beam.Pipeline(options=options) as p:
         (
@@ -17,6 +18,7 @@ def run():
                 f"gs://{BUCKET_NAME}/{PREFIX}"
             )
             | "Sample" >> beam.combiners.Sample.FixedSizeGlobally(5)
+            | "Flatten" >> beam.FlatMap(lambda x: x)
             | "Print" >> beam.Map(print)
         )
 
