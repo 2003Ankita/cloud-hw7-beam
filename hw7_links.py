@@ -5,7 +5,10 @@ BUCKET_NAME = "pagerank-bu-ap178152"
 PREFIX = "webgraph_v2/*"
 
 def run():
-    options = PipelineOptions()
+    options = PipelineOptions([
+    "--runner=DirectRunner",
+    "--direct_num_workers=1"
+])
 
     with beam.Pipeline(options=options) as p:
         (
