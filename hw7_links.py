@@ -23,8 +23,9 @@ def extract_links(file):
 
 def run():
     options = PipelineOptions([
-    "--runner=DirectRunner"
-    ])
+    "--runner=DirectRunner",
+    "--environment_type=LOOPBACK"
+])
 
     with beam.Pipeline(options=options) as p:
 
