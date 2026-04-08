@@ -15,7 +15,7 @@ def get_files():
 
     data = []
     for i, blob in enumerate(blobs):
-        if i > 200:   # only 200 files
+        if i >= 1000:
             break
         content = blob.download_as_text()
         filename = os.path.basename(blob.name)
