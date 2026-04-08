@@ -5,7 +5,7 @@ import os
 from google.cloud import storage
 
 BUCKET_NAME = "pagerank-bu-ap178152"
-PREFIX = "webgraph_v2/1"
+PREFIX = "webgraph_v2/"
 
 def get_files():
     client = storage.Client()
@@ -15,8 +15,6 @@ def get_files():
 
     data = []
     for i, blob in enumerate(blobs):
-        if i >= 1000:
-            break
         content = blob.download_as_text()
         filename = os.path.basename(blob.name)
         data.append((filename, content))
