@@ -22,7 +22,9 @@ def extract_links(file):
 
 
 def run():
-    options = PipelineOptions()
+    options = PipelineOptions([
+    "--runner=DirectRunner"
+    ])
 
     with beam.Pipeline(options=options) as p:
 
