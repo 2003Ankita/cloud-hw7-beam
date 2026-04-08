@@ -4,7 +4,7 @@ from apache_beam.io import fileio
 import re
 import os
 
-BUCKET_PATH = "gs://pagerank-bu-ap178152/webgraph_v2/*"
+BUCKET_PATH = "gs://pagerank-bu-ap178152/webgraph_v2/1*.html"
 
 # Extract links from file content
 def extract_links(file):
