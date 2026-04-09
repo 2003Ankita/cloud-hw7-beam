@@ -34,7 +34,8 @@ def run():
             | "Top Outgoing" >> beam.combiners.Top.Of(5, key=lambda x: x[1])
         )
 
-        outgoing | beam.Map(print)
+        outgoing | "Print Outgoing" >> beam.Map(print)
+
 
         incoming = (
             file_links
@@ -43,7 +44,7 @@ def run():
             | "Top Incoming" >> beam.combiners.Top.Of(5, key=lambda x: x[1])
         )
 
-        incoming | beam.Map(print)
+        incoming | "Print Incoming" >> beam.Map(print)
 
 
 if __name__ == "__main__":
